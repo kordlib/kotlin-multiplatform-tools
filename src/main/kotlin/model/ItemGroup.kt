@@ -63,6 +63,7 @@ public class ItemGroup(override val parent: HasSourceSets, override val name: St
             val testSourceSet = create(itemGroup.testSourceSet) {
                 dependsOn(getByName(parent.testSourceSet))
             }
+            applyDependencyHandlers()
 
             subItems.forEach { with(it) { apply() } }
 

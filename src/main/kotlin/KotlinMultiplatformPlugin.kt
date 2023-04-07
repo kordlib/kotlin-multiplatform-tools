@@ -53,7 +53,7 @@ private fun Project.applyPublishing(extension: KotlinMultiplatformProjectExtensi
             repositories {
                 maven {
                     url = uri(
-                        if (project.version.toString().endsWith("-")) {
+                        if (project.version.toString().endsWith("-SNAPSHOT")) {
                             extension.snapshotRepository.get()
                         } else {
                             extension.releaseRepository.get()

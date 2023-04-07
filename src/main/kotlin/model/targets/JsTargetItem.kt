@@ -31,6 +31,7 @@ public inline fun ItemParent.nodejs(
         callsInPlace(configure, InvocationKind.EXACTLY_ONCE)
     }
     return js(name) {
+        configure()
         target {
             nodejs()
         }
@@ -46,6 +47,7 @@ public inline fun ItemParent.fullJs(
         callsInPlace(configure, InvocationKind.EXACTLY_ONCE)
     }
     return js(name) {
+        configure()
         target {
             browser()
             nodejs()
