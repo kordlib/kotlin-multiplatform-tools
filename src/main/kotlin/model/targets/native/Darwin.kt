@@ -22,10 +22,10 @@ public inline fun ItemParent.tvos(name: String = "tvos", configure: NativeTarget
 }
 
 public inline fun ItemParent.watchos(name: String = "watchos", configure: NativeTargetItem.() -> Unit = {}) {
-    contract {
-        callsInPlace(configure, InvocationKind.EXACTLY_ONCE)
+    group(name) {
+        addTarget("${name}Arm64", KotlinMultiplatformExtension::watchosArm64, configure)
+        addTarget("${name}X64", KotlinMultiplatformExtension::watchosX64, configure)
     }
-    addTarget(name, KotlinMultiplatformExtension::watchos, configure)
 }
 
 public inline fun ItemParent.macosX64(name: String = "macosX64", configure: NativeTargetItem.() -> Unit = {}) {

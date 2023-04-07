@@ -5,6 +5,7 @@ import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 plugins {
     `kotlin-dsl`
     `java-gradle-plugin`
+    `groovy-gradle-plugin`
     id("com.gradle.plugin-publish") version "1.1.0"
 }
 

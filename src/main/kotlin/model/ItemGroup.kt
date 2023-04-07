@@ -18,7 +18,6 @@ public class ItemGroup(override val parent: HasSourceSets, override val name: St
     context(Project)
     @Internal
     override fun KotlinMultiplatformExtension.apply() {
-        subItems.forEach { with(it) { apply() } }
         configureSourceSets(this@ItemGroup)
         configureTasks(this@ItemGroup)
     }
@@ -55,6 +54,7 @@ public class ItemGroup(override val parent: HasSourceSets, override val name: St
         }
     }
 
+    context(Project)
     private fun KotlinMultiplatformExtension.configureSourceSets(itemGroup: ItemGroup) {
         with(sourceSets) {
             val mainSourceSet = create(itemGroup.mainSourceSet) {
@@ -63,6 +63,8 @@ public class ItemGroup(override val parent: HasSourceSets, override val name: St
             val testSourceSet = create(itemGroup.testSourceSet) {
                 dependsOn(getByName(parent.testSourceSet))
             }
+
+            subItems.forEach { with(it) { apply() } }
 
             itemGroup.subItems.forEach {
                 if (it is HasSourceSets) {
