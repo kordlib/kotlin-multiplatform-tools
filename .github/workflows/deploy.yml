@@ -13,5 +13,8 @@ jobs:
           distribution: 'temurin'
           java-version: 8
       - uses: gradle/gradle-build-action@v2
+        env:
+          JFROG_USER: ${{ secrets.JFROG_USER }}
+          JFROG_PASSWORD: ${{ secrets.JFROG_PASSWORD }}
         with:
-          gradle-version: artifactoryPublish
+          arguments: artifactoryPublish

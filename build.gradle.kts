@@ -50,12 +50,12 @@ kotlin {
 }
 
 artifactory {
-    setContextUrl("https://kord.jfrog.io")
+    setContextUrl("https://kord.jfrog.io/artifactory")
     publish {
         repository {
             setRepoKey("gradle-dev-local")
-            setUsername(System.getenv("NEXUS_USER"))
-            setPassword(System.getenv("NEXUS_PASSWORD"))
+            setUsername(System.getenv("JFROG_USER"))
+            setPassword(System.getenv("JFROG_PASSWORD"))
             setMavenCompatible(true)
 
         }
@@ -63,8 +63,8 @@ artifactory {
     resolve {
         repository {
             setRepoKey("gradle-dev")
-            setUsername(System.getenv("NEXUS_USER"))
-            setPassword(System.getenv("NEXUS_PASSWORD"))
+            setUsername(System.getenv("JFROG_USER"))
+            setPassword(System.getenv("JFROG_PASSWORD"))
             setMavenCompatible(true)
         }
     }
