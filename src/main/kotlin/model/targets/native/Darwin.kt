@@ -1,5 +1,6 @@
 package dev.kord.gradle.model.targets.native
 
+import dev.kord.gradle.model.ItemGroup
 import dev.kord.gradle.model.ItemParent
 import dev.kord.gradle.model.group
 import dev.kord.gradle.model.targets.addTarget
@@ -53,15 +54,16 @@ public inline fun ItemParent.macos(name: String = "macos", configure: NativeTarg
     }
 }
 
-public inline fun ItemParent.darwin(name: String = "darwin", configure: NativeTargetItem.() -> Unit = {}) {
+public inline fun ItemParent.darwin(name: String = "darwin", configure: ItemGroup.() -> Unit = {}) {
     contract {
         callsInPlace(configure, InvocationKind.AT_LEAST_ONCE)
     }
 
     group(name) {
-        macos(configure = configure)
-        tvos(configure = configure)
-        watchos(configure = configure)
-        ios(configure = configure)
+        configure()
+        macos()
+        tvos()
+        watchos()
+        ios()
     }
 }

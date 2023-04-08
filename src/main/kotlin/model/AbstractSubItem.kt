@@ -23,9 +23,7 @@ private class TestDependencyHandler : DependencyHandler {
 }
 
 private fun KotlinSourceSet.applyDependencyHandler(dependencyHandler: DependencyHandler) {
-    println("Applying dependencies for: $name")
     if (dependencyHandler.dependencyConfigurator != null) {
-        println("Applying dependencies for: ${dependencyHandler.dependencyConfigurator}")
         dependencies {
             dependencyHandler.dependencyConfigurator?.invoke(this)
         }

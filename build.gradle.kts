@@ -6,11 +6,11 @@ plugins {
     `kotlin-dsl`
     `java-gradle-plugin`
     `groovy-gradle-plugin`
-    id("com.gradle.plugin-publish") version "1.1.0"
+    id("com.jfrog.artifactory") version "4.31.8"
 }
 
 group = "dev.kord"
-version = "0.0.1"
+version = "1.0.0-SNAPSHOT"
 
 repositories {
     mavenCentral()
@@ -47,4 +47,25 @@ gradlePlugin {
 kotlin {
     explicitApi()
     jvmToolchain(8)
+}
+
+artifactory {
+    setContextUrl("https://kord.jfrog.io")
+    publish {
+        repository {
+            setRepoKey("gradle-dev-local")
+            setUsername(System.getenv("NEXUS_USER"))
+            setPassword(System.getenv("NEXUS_PASSWORD"))
+            setMavenCompatible(true)
+
+        }
+    }
+    resolve {
+        repository {
+            setRepoKey("gradle-dev")
+            setUsername(System.getenv("NEXUS_USER"))
+            setPassword(System.getenv("NEXUS_PASSWORD"))
+            setMavenCompatible(true)
+        }
+    }
 }
