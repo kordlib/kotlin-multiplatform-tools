@@ -6,6 +6,7 @@ plugins {
     `kotlin-dsl`
     `java-gradle-plugin`
     `groovy-gradle-plugin`
+    `maven-publish`
     id("com.jfrog.artifactory") version "4.31.8"
 }
 
@@ -58,6 +59,10 @@ artifactory {
             setPassword(System.getenv("JFROG_PASSWORD"))
             setMavenCompatible(true)
 
+        }
+
+        defaults {
+            publications("kotlin-multiplatform.pluginPluginMarkerMaven", "pluginMaven")
         }
     }
     resolve {
