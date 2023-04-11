@@ -29,9 +29,6 @@ public class KotlinMultiplatformPlugin : Plugin<Project> {
 }
 
 private fun Project.applyPublishing(extension: KotlinMultiplatformProjectExtension) {
-    apply(plugin = "maven-publish")
-    apply(plugin = "signing")
-
     configureExtension<PublishingExtension>("publishing") {
         publications {
             withType<MavenPublication> {

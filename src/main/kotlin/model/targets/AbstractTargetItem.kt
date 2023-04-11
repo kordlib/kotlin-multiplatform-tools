@@ -8,6 +8,7 @@ import org.gradle.api.Project
 import org.jetbrains.kotlin.gradle.dsl.KotlinCommonCompilerOptions
 import org.jetbrains.kotlin.gradle.dsl.KotlinMultiplatformExtension
 import org.jetbrains.kotlin.gradle.plugin.KotlinTarget
+import org.jetbrains.kotlin.konan.target.HostManager
 
 @PublishedApi
 internal inline fun <Target : KotlinTarget,
@@ -48,6 +49,7 @@ public abstract class AbstractTargetItem<Target : KotlinTarget,
     context(Project)
     @Suppress("UNCHECKED_CAST")
     override fun KotlinMultiplatformExtension.apply() {
+        HostManager.hostIsLinux
         configure {
             targetConfigurator?.invoke(this)
             compilations.all {
